@@ -4,7 +4,18 @@
 
 ## 使用方法
 
-在有docker或者docker desktop的情况下，运行install.xx脚本，或者使用如下命令：
+首先在docker-compose.yml中更改volumes为你自己的共享文件夹
+
+就是这里：
+
+```dockerfile
+volumes:
+      - //d/database_BooksAndFiles/VMware/share_files/:/security/
+```
+
+前面的是主机要共享的文件夹，后面的是映射到docker的文件夹
+
+然后在有docker或者docker desktop的情况下，运行install.xx脚本，或者使用如下命令：
 
 ```bash
 docker-compose build
