@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Starting your exploit at $PWD..."
+python "$PWD/exp.py"

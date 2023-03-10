@@ -1,0 +1,59 @@
+version: "6"
+
+services:
+  ubuntu22.04:
+    build: 
+      context: ./pwndocker22
+    image: mypwn:22.04
+    container_name: ubpwn22.04
+    working_dir: /security
+    volumes:
+      - //d/database_BooksAndFiles/VMware/share_files/:/security/
+    ports:
+      - "24:22" # 24是ssh端口
+    cap_add:
+      - ALL
+    tty: true
+    command: /bin/bash
+  ubuntu20.04:
+    build: 
+      context: ./pwndocker20
+    image: mypwn:20.04
+    container_name: ubpwn20.04
+    working_dir: /security
+    volumes:
+      - //d/database_BooksAndFiles/VMware/share_files/:/security/
+    ports:
+      - "25:22" # 25是ssh端口
+    cap_add:
+      - ALL
+    tty: true
+    command: /bin/bash
+  ubuntu18.04:
+    build: 
+      context: ./pwndocker18
+    image: mypwn:18.04
+    container_name: ubpwn18.04
+    working_dir: /security
+    volumes:
+      - //d/database_BooksAndFiles/VMware/share_files/:/security/
+    ports:
+      - "26:22" # 26是ssh端口
+    cap_add:
+      - ALL
+    tty: true
+    command: /bin/bash
+  ubuntu16.04:
+    build: 
+      context: ./pwndocker16
+    image: mypwn:16.04
+    container_name: ubpwn16.04
+    working_dir: /security
+    volumes:
+      - //d/database_BooksAndFiles/VMware/share_files/:/security/
+    ports:
+      - "27:22" # 27是ssh端口
+    cap_add:
+      - ALL
+    tty: true
+    command: /bin/bash

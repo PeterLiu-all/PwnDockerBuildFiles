@@ -1,0 +1,55 @@
+#!/bin/bash
+
+if [[ "$*" =~ "--help" ]] || [[ "$*" =~ "-h" ]];
+then
+    echo "【用法】$(basename $0) 程序运行的端口号 程序文件名"
+    echo "脚本自动判断32位还是64位，同时设置大小端"
+    echo "程序运行的端口号和程序文件名不得确实，不然脚本不会运行"
+    echo "示例："
+    echo -e "\t$(basename $0) 1234 example"
+    echo "By PeterLiu"
+    exit 0
+fi
+
+if [[ -z $1 ]];then
+    echo "缺失端口号！"
+    exit 3
+elif [[ ! $1 =~ ^[0-9]+$ ]];then
+    echo "端口号必须是数字！"
+    exit 3
+fi
+
+if [[ -z $2 ]];then
+    echo "缺失程序名！"
+    exit 4
+fi
+
+result=`file $2`
+
+if [[ ! $result =~ "ARM" ]];then
+    echo "不是ARM架构程序！"
+    exit 1
+fi
+
+if [[ $result =~ "32-bit" ]];then
+    echo "$1是32位系统"
+    qemu-arm -g $1 $2 &
+elif [[ $result =~ "64-bit" ]];then
+    echo "$1是64位系统"
+    qemu-aarch64 -L /usr/aarch64-linux-gnu -g $1 $2 &
+else 
+    echo "无法判断架构！"
+    exit 2
+fi
+
+endian=`readelf -h typo | grep endian`
+
+if [[ $endian =~ "little endian" ]];then
+    gdb $2 -ex "set endian little" \
+    -ex "set architecture arm" \
+    -ex "target remote localhost:$1 "
+else
+    gdb $2 -ex "set endian big" \
+    -ex "set architecture arm" \
+    -ex "target remote localhost:$1 "
+fi
