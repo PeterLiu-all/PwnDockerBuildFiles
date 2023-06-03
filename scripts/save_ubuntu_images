@@ -1,0 +1,13 @@
+#!/bin/bash
+# 备份所有Ubuntu镜像
+sudo chmod a+x ./save_images
+echo "正在备份mypwn:16.04"
+./save_images mypwn:16.04
+echo "正在备份mypwn:18.04"
+./save_images mypwn:18.04
+echo "正在备份mypwn:20.04"
+./save_images mypwn:20.04
+echo "正在备份mypwn:22.04"
+./save_images mypwn:22.04
+sudo 7za a -t7z "UbuntuDocker16to22.7z" mypwn:*.tar
+

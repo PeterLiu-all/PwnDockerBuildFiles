@@ -1,0 +1,24 @@
+#!/bin/bash
+echo "尝试配置共享文件夹设置..."
+# sudo echo "user_allow_other" >> /etc/fuse.conf
+# sudo cp ./SHARE /usr/local/bin 
+# sudo chmod a+x /usr/local/bin/SHARE
+echo "正在配置docker启动脚本..."
+sudo cp ./*docker /usr/local/bin
+sudo chmod a+x `ls /usr/local/bin/*docker`
+sudo cp ./u16 /usr/local/bin
+sudo chmod a+x /usr/local/bin/u16
+sudo cp ./u18 /usr/local/bin
+sudo chmod a+x /usr/local/bin/u18
+sudo cp ./u20 /usr/local/bin
+sudo chmod a+x /usr/local/bin/u20
+sudo cp ./u22 /usr/local/bin
+sudo chmod a+x /usr/local/bin/u22
+echo "正在导入Ubuntu16~22，可能会需要一点时间（10分钟左右）"
+sudo chmod a+x ./*ubuntu
+./import_ubuntu
+./start_ubuntu
+echo "导入已完成！显示当前所有镜像和容器："
+ls_docker
+echo "使用u16/u18/u20/u22 <命令> 来通过不同版本的Ubuntu运行命令，如果没有输入任何命令则默认打开交互式终端。"
+echo "注意如果直接在宿主机终端想要运行程序要在程序前加上\$PWD/，比如python a.py要在Ubuntu16中运行 => u16 python \$PWD/a.py"

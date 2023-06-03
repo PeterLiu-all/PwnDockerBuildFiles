@@ -1,0 +1,16 @@
+#!/bin/bash
+# start_docker 镜像名或ID 从该镜像中创建新容器
+OLD_IFS="$IFS" 
+IFS=" " 
+arr=($*) 
+IFS="$OLD_IFS"
+command=${arr[@]:2}
+if  [ ! -n "$command" ] ;then
+    command="/bin/bash"
+else
+    command=${arr[@]:2}
+fi
+image_name=${arr[0]}
+container_name=${arr[1]}
+tag=`echo $image_name | awk -F ':' '{print $2}'`
+sudo docker exec -it $(sudo docker run -itd --net host -P --name "$container_name" --mount type=bind,source=/mnt/d/database_BooksAndFiles/VMware/share_files,target=/mnt -w /mnt $image_name /bin/bash) $command

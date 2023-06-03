@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ ! -d "/home/kali/share/share_files" ];
+then
+	vmhgfs-fuse -o allow_other .host:/ /home/kali/share
+	echo "共享文件夹/home/kali/share/share_files已创建！"
+else
+	echo "/home/kali/share/share_files已存在!"
+fi

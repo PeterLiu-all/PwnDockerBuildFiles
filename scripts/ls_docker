@@ -1,0 +1,6 @@
+#!/bin/bash
+# 列出所有容器和镜像
+echo "images:"
+sudo docker images -a
+echo "containers:"
+sudo docker ps -a

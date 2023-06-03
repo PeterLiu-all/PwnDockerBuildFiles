@@ -1,0 +1,13 @@
+#!/bin/bash
+# usage: 
+# rm_docker 删除指定容器
+# rm_docker all 删除所有容器
+if [ $1 == "all" ]
+then
+	sudo docker rm $(sudo docker stop $(sudo docker ps -aq))
+else
+	for i in $@
+	do
+		sudo docker rm $(sudo docker stop "$i")
+	done
+fi

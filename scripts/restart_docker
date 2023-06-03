@@ -1,0 +1,19 @@
+#!/bin/bash
+# usage: 
+# restart_docker <容器1、容器2、容器3...> 重启容器1、容器2、容器3...
+# restart_docker all 重启所有容器
+if [ -z $1 ]
+then
+	echo "no argument provided! exit now..."
+	exit 1
+fi
+
+if [ $1 == "all" ]
+then
+	sudo docker restart $(sudo docker ps -aq)
+else
+	for i in $@
+	do
+		sudo docker restart "$i"
+	done
+fi

@@ -1,0 +1,6 @@
+#!/bin/bash
+# 创建所有Ubuntu容器
+sudo docker run -itd --net host -P --name "Ubuntu16.04" --mount type=bind,source=/mnt/d/database_BooksAndFiles/VMware/share_files,destination=/mnt -w /mnt mypwn:16.04 /bin/bash
+sudo docker run -itd --net host -P --name "Ubuntu18.04" --mount type=bind,source=/mnt/d/database_BooksAndFiles/VMware/share_files,destination=/mnt -w /mnt mypwn:18.04 /bin/bash
+sudo docker run -itd --net host -P --name "Ubuntu20.04" --mount type=bind,source=/mnt/d/database_BooksAndFiles/VMware/share_files,destination=/mnt -w /mnt mypwn:20.04 /bin/bash
+sudo docker run -itd --net host -P --name "Ubuntu22.04" --mount type=bind,source=/mnt/d/database_BooksAndFiles/VMware/share_files,destination=/mnt -w /mnt mypwn:22.04 /bin/bash

@@ -1,0 +1,7 @@
+#!/bin/bash
+command="$*"
+if [ -z "$command" ]
+then
+	command="/bin/bash"
+fi
+exec_docker Ubuntu20.04 "$command"

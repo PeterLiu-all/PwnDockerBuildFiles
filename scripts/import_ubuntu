@@ -1,0 +1,7 @@
+#!/bin/bash
+# 导入所有Ubuntu镜像
+# sudo 7z e UbuntuDocker16to22.7z
+sudo docker import Ubuntu16.04.tar mypwn:16.04
+sudo docker import Ubuntu18.04.tar mypwn:18.04
+sudo docker import Ubuntu20.04.tar mypwn:20.04
+sudo docker import Ubuntu22.04.tar mypwn:22.04

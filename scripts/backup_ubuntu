@@ -1,0 +1,12 @@
+#!/bin/bash
+# 备份所有Ubuntu容器为镜像
+sudo chmod a+x ./backup_docker
+echo "正在备份Ubuntu16.04"
+./backup_docker Ubuntu16.04
+echo "正在备份Ubuntu18.04"
+./backup_docker Ubuntu18.04
+echo "正在备份Ubuntu20.04"
+./backup_docker Ubuntu20.04
+echo "正在备份Ubuntu22.04"
+./backup_docker Ubuntu22.04
+sudo 7za a -t7z "UbuntuDocker16to22.7z" Ubuntu*.tar

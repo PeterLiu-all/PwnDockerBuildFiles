@@ -1,8 +1,8 @@
-echo "æ­£åœ¨buildé•œåƒæ–‡ä»¶ï¼Œå¤§æ¦‚éœ€è¦20~30åˆ†é’Ÿ~~"
+Write-Output "ÕıÔÚbuild¾µÏñÎÄ¼ş£¬´ó¸ÅĞèÒª20~30·ÖÖÓ~~"
 docker-compose build
-echo "æ­£åœ¨ç”Ÿæˆå®¹å™¨ï¼Œé©¬ä¸Šå°±å¥½ï¼"
+Write-Output "ÕıÔÚÉú³ÉÈİÆ÷£¬ÂíÉÏ¾ÍºÃ£¡"
 docker-compose up -d
 
-echo "ä½¿ç”¨å¦‚ä¸‹å‘½ä»¤æ¥æ‰“å¼€ä¸€ä¸ªdockerç»ˆç«¯ï¼š"
-echo "docker exec -it ubpwn<ç‰ˆæœ¬å·> /bin/bashï¼Œæ¯”å¦‚ï¼š"
-echo "docker exec -it ubpwn18.04 /bin/bash"
+Write-Output "Ê¹ÓÃÈçÏÂÃüÁîÀ´´ò¿ªÒ»¸ödockerÖÕ¶Ë£º"
+Write-Output 'docker exec -it ubpwn<°æ±¾ºÅ> /bin/bash£¬±ÈÈç£º'
+Write-Output 'docker exec -it ubpwn18.04 /bin/bash'

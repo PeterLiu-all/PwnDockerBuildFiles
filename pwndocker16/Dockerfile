@@ -82,6 +82,7 @@ RUN apt install -y \
     gdb-multiarch \
     netcat \
     socat \
+    man \
     g++ clang clang-format global cppcheck \
     net-tools \
     ssh \
@@ -214,10 +215,16 @@ RUN chmod a+x /usr/local/bin/EXP && \
     chmod a+x /usr/local/bin/changelibc.sh && \
     chmod a+x /usr/local/bin/checklibc.sh
 
-RUN mkdir /var/run/sshd
-RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+RUN mkdir /var/run/sshd && \
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
+    echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config && \
+    sed -ri 's/PermitRootLogin no/#PermitRootLogin no/g' /etc/ssh/sshd_config && \
+    sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
+# RUN apt-get install -y lsb-release wget software-properties-common gnupg && \
+#     bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+RUN apt-get autoremove 
+RUN echo "root:123456" | chpasswd
 COPY entrypoint.sh /sbin
 RUN chmod +x /sbin/entrypoint.sh
 ENTRYPOINT [ "/sbin/entrypoint.sh" ]
